@@ -1,0 +1,1048 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정서조절 자가진단</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 5vw; max-width: 700px; margin: auto; }
+    h1 { color: #003366; }
+    .question { display: none; margin-top: 2em; }
+    .question.active { display: block; }
+    .btn { margin-top: 2em; padding: 10px 20px; font-size: 1em; background: #007ACC; color: white; border: none; cursor: pointer; }
+    .btn:hover { background: #005F99; }
+    .result { margin-top: 2em; border-top: 2px solid #ccc; padding-top: 1em; }
+    select { font-size: 1em; padding: 0.2em; }
+  </style>
+</head>
+<body>
+  <h1>정서조절 자가진단</h1>
+  <p>총 69문항에 대해 0(거의 그렇지 않다)부터 6(항상 그렇다)까지 선택하고, 다음 문항으로 이동하세요.</p>
+  <form id="form">
+    <div id="questions">
+      
+    <div class="question" id="qbox1">
+        <label>1. 나는 처한 상황이나 문제를 합리적으로 생각하려고 노력한다.</label><br/>
+        <select id="q1">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox2">
+        <label>2. 나는 문제해결을 위해 도움을 줄 수 있는 사람들에게 구체적인 도움을 부탁한다.</label><br/>
+        <select id="q2">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox3">
+        <label>3. 나는 일어나버린 상황에 대해 어쩔 수 없음을 받아들인다.</label><br/>
+        <select id="q3">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox4">
+        <label>4. 내가 어떻게 느끼는지 누군가에게 이야기 한다.</label><br/>
+        <select id="q4">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox5">
+        <label>5. 왜 이런 기분을 느끼게 되었는지 이해하려고 노력한다.</label><br/>
+        <select id="q5">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox6">
+        <label>6. 상대방이나 주변 사람들에게 화를 낸다.</label><br/>
+        <select id="q6">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox7">
+        <label>7. 나 스스로에게 괜찮다고 말한다.</label><br/>
+        <select id="q7">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox8">
+        <label>8. 느껴지는 감정을 부정하지 않고 수용하려 한다.</label><br/>
+        <select id="q8">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox9">
+        <label>9. 행복했던 기억을 떠올려 본다.</label><br/>
+        <select id="q9">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox10">
+        <label>10. 처한 상황이나 문제의 부정적인 측면에 대해 반복적으로 생각한다.</label><br/>
+        <select id="q10">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox11">
+        <label>11. 부정적인 것을 잊어버리려 노력한다.</label><br/>
+        <select id="q11">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox12">
+        <label>12. 그 일의 원인이 기본적으로 다른 사람에게 있다고 생각한다.</label><br/>
+        <select id="q12">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox13">
+        <label>13. 이 일을 달리 해석해 볼 수 없는지 생각해 본다.</label><br/>
+        <select id="q13">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox14">
+        <label>14. 처한 상황이나 문제를 개선하거나 해결하기 위한 구체적인 일을 실행에 옮긴다.</label><br/>
+        <select id="q14">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox15">
+        <label>15. 누군가 나를 이해하고 위로해 주길 바란다.</label><br/>
+        <select id="q15">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox16">
+        <label>16. 불쾌한 기분에서 벗어날 수 있도록 즐거운 장소에 간다.</label><br/>
+        <select id="q16">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox17">
+        <label>17. 혼자 있거나 안전한 장소에서 소리를 크게 질러 본다.</label><br/>
+        <select id="q17">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox18">
+        <label>18. 처한 상황이나 문제와 관련 없는 다른 일을 생각한다.</label><br/>
+        <select id="q18">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox19">
+        <label>19. 지금 하고 있는 행동이나 생각이 나에게 얼마나 도움이 될 것인지 생각해 본다.</label><br/>
+        <select id="q19">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox20">
+        <label>20. 처한 상황이나 문제에 대해 무언가 구체적인 일을 할 수 있는 사람과 이야기한다.</label><br/>
+        <select id="q20">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox21">
+        <label>21. 폭식을 한다.</label><br/>
+        <select id="q21">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox22">
+        <label>22. 나쁜 상황은 금방 지나갈 거라고 스스로에게 말한다.</label><br/>
+        <select id="q22">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox23">
+        <label>23. 나를 행복하게 하는 것들을 떠올려본다.</label><br/>
+        <select id="q23">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox24">
+        <label>24. 주변 사람들에게 짜증을 낸다.</label><br/>
+        <select id="q24">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox25">
+        <label>25. 평소 좋아하는 사람을 만나 시간을 보낸다.</label><br/>
+        <select id="q25">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox26">
+        <label>26. 앞으로 일어날 일에 대해 자꾸만 안 좋은 쪽으로 생각한다.</label><br/>
+        <select id="q26">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox27">
+        <label>27. 일은 이미 일어났고 어떻게든 달라질 수 없음을 받아들이려 한다.</label><br/>
+        <select id="q27">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox28">
+        <label>28. 그 일이 다른 사람 잘못이라고 생각한다.</label><br/>
+        <select id="q28">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox29">
+        <label>29. 담배를 피운다.</label><br/>
+        <select id="q29">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox30">
+        <label>30. 처한 상황이나 문제를 보다 나은 방향으로 해결할 수 있도록 차근차근 행동을 취한다.</label><br/>
+        <select id="q30">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox31">
+        <label>31. 혼자 있거나 안전한 장소에서 화장지나 종이 등의 물건을 찢거나 부수면서 불쾌한 감정을 해소하려 한다.</label><br/>
+        <select id="q31">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox32">
+        <label>32. 성적 행위(자위나 성관계 등)를 한다.</label><br/>
+        <select id="q32">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox33">
+        <label>33. 음식을 마구 먹어댄다.</label><br/>
+        <select id="q33">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox34">
+        <label>34. 상황이 왜 잘 진행되지 않았는지 평가한다.</label><br/>
+        <select id="q34">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox35">
+        <label>35. 내가 겪은 일이 얼마나 끔찍한지 계속 생각한다.</label><br/>
+        <select id="q35">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox36">
+        <label>36. 기분을 전환하기 위해 산책이나 드라이브를 한다.</label><br/>
+        <select id="q36">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox37">
+        <label>37. 자신에게 위안이 되는 말을 되뇌인다.</label><br/>
+        <select id="q37">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox38">
+        <label>38. 마음이 편안해지거나 기분이 좋아지는 자연경관을 머릿속에 그려본다.</label><br/>
+        <select id="q38">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox39">
+        <label>39. 처한 상황이나 문제가 다른 사람의 탓이라고 생각한다.</label><br/>
+        <select id="q39">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox40">
+        <label>40. 불쾌한 감정을 충분히 느끼려고 한다.</label><br/>
+        <select id="q40">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox41">
+        <label>41. 상대방이나 주변 사람들에게 내 감정을 정확하게 표현하려 한다.</label><br/>
+        <select id="q41">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox42">
+        <label>42. 안 좋은 일이 일어나게 될지 모른다고 계속해서 걱정한다.</label><br/>
+        <select id="q42">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox43">
+        <label>43. 편한 친구나 가족을 만난다.</label><br/>
+        <select id="q43">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox44">
+        <label>44. 불쾌한 감정을 있는 그대로 받아들이려고 한다.</label><br/>
+        <select id="q44">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox45">
+        <label>45. 처한 상황으로부터 배울 게 있을 거라고 생각한다.</label><br/>
+        <select id="q45">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox46">
+        <label>46. 과거에 기분을 좋게 해 주었던 활동을 한다.</label><br/>
+        <select id="q46">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox47">
+        <label>47. 어떻게 하는 것이 좋을지 선배나 권위자에게 조언을 구한다.</label><br/>
+        <select id="q47">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox48">
+        <label>48. 혼자 있거나 안전한 장소에서 욕이나 심한 말을 함으로써 불쾌한 감정을 해소하려 한다.</label><br/>
+        <select id="q48">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox49">
+        <label>49. 처한 상황이나 문제를 잘 처리할 수 있는 방법을 취한다.</label><br/>
+        <select id="q49">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox50">
+        <label>50. 상황이 다르게 전개되었더라면 하는 생각을 반복적으로 한다.</label><br/>
+        <select id="q50">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox51">
+        <label>51. 이미 일어난 일이라는 사실을 받아들인다.</label><br/>
+        <select id="q51">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox52">
+        <label>52. 처한 상황을 변화시킬 수 있는 방법에 대해 생각해 본다.</label><br/>
+        <select id="q52">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox53">
+        <label>53. 그 일에 대해 다른 사람의 책임이라고 생각한다.</label><br/>
+        <select id="q53">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox54">
+        <label>54. 다른 사람에게서 공감이나 이해를 구하려 한다.</label><br/>
+        <select id="q54">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox55">
+        <label>55. 취할 때까지 술을 마신다.</label><br/>
+        <select id="q55">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox56">
+        <label>56. 상대방이나 다른 사람들에게 자꾸 시비를 건다.</label><br/>
+        <select id="q56">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox57">
+        <label>57. 불쾌한 감정을 유발했던 대상이나 상황을 반복해서 생각한다.</label><br/>
+        <select id="q57">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox58">
+        <label>58. 문제를 해결하기 위해 구체적인 행동을 취한다.</label><br/>
+        <select id="q58">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox59">
+        <label>59. 컴퓨터 게임을 한다.</label><br/>
+        <select id="q59">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox60">
+        <label>60. 친구와 함께 즐겁고 유쾌한 활동을 한다.</label><br/>
+        <select id="q60">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox61">
+        <label>61. 그 일에 대해 너무 깊이 생각하지 않으려고 한다.</label><br/>
+        <select id="q61">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox62">
+        <label>62. 과거에 즐거웠던 일들을 생각해 본다.</label><br/>
+        <select id="q62">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox63">
+        <label>63. 처한 상황이나 문제와 관련해 내가 실수하거나 잘못한 점들을 계속해서 떠올린다.</label><br/>
+        <select id="q63">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox64">
+        <label>64. 앞으로 어떻게 할지 행동에 대한 계획을 세운다.</label><br/>
+        <select id="q64">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox65">
+        <label>65. 불쾌한 감정에 대해 부정하지 않고 받아들이려 한다.</label><br/>
+        <select id="q65">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox66">
+        <label>66. 처한 상황이나 문제에 대해 무엇을 할지 다른 사람에게 조언을 구한다.</label><br/>
+        <select id="q66">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox67">
+        <label>67. 친밀한 사람과 함께 시간을 보낸다.</label><br/>
+        <select id="q67">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox68">
+        <label>68. 내게 어떤 문제가 있을 거라는 생각을 반복한다.</label><br/>
+        <select id="q68">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    <div class="question" id="qbox69">
+        <label>69. 필요 이상으로 많이 먹는다.</label><br/>
+        <select id="q69">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    
+    </div>
+    <button type="button" class="btn" id="prevBtn" onclick="prevQuestion()">이전</button>
+    <button type="button" class="btn" id="nextBtn" onclick="nextQuestion()">다음</button>
+    <button type="button" class="btn" id="submitBtn" style="display:none" onclick="calculate()">결과 보기</button>
+  </form>
+  <div class="result" id="result"></div>
+  <canvas id="summaryChart" width="400" height="300" style="margin-top:30px;"></canvas>
+
+<script>
+let current = 1;
+showQuestion(current);
+
+function showQuestion(n) {
+  for (let i = 1; i <= 69; i++) {
+    document.getElementById("qbox"+i).classList.remove("active");
+  }
+  document.getElementById("qbox"+n).classList.add("active");
+  document.getElementById("prevBtn").style.display = n === 1 ? "none" : "inline-block";
+  document.getElementById("nextBtn").style.display = n === 69 ? "none" : "inline-block";
+  document.getElementById("submitBtn").style.display = n === 69 ? "inline-block" : "none";
+}
+
+function nextQuestion() {
+  if (current < 69) current++;
+  showQuestion(current);
+}
+
+function prevQuestion() {
+  if (current > 1) current--;
+  showQuestion(current);
+}
+
+const groups = {
+  "인지적 방법": {
+    "능동적으로 생각하기": [1,5,13,19,34,45,52,64],
+    "수동적으로 생각하기": [7,11,18,22,37,61],
+    "인지적으로 수용하기": [3,27,51],
+    "부정적으로 생각하기": [10,26,35,42,50,57,63,68],
+    "타인 비난하기": [12,28,39,53]
+  },
+  "체험적 방법": {
+    "즐거운 상상하기": [9,23,38,62],
+    "타인에게 공감이나 위안 얻기": [4,15,41,54],
+    "감정 수용하기": [8,40,44,65],
+    "타인에게 부정적 감정 분출하기": [6,24,56],
+    "안전한 상황에서 부정적 감정 분출하기": [17,31,48]
+  },
+  "행동적 방법": {
+    "문제해결 행동 취하기": [14,30,49,58],
+    "조언이나 도움 구하기": [2,20,47,66],
+    "친밀한 사람 만나기": [25,43,67],
+    "기분전환 활동하기": [16,36,46,60],
+    "폭식하기": [21,33,69],
+    "탐닉 활동하기": [29,32,55,59]
+  }
+};
+
+function calculate() {
+  const resultDiv = document.getElementById("result");
+  const chartCtx = document.getElementById('summaryChart').getContext('2d');
+  resultDiv.innerHTML = "";
+  let chartLabels = [];
+  let chartData = [];
+
+  for (const [groupName, subgroups] of Object.entries(groups)) {
+    resultDiv.innerHTML += `<h2>${groupName}</h2>`;
+    let groupTotal = 0, groupMax = 0;
+    for (const [strategy, items] of Object.entries(subgroups)) {
+      const score = items.reduce((sum, i) => sum + parseInt(document.getElementById('q' + i).value), 0);
+      const max = items.length * 6;
+      const pct = Math.round(score / max * 100);
+      chartLabels.push(strategy);
+      chartData.push(pct);
+      groupTotal += score;
+      groupMax += max;
+      resultDiv.innerHTML += `<div class="strategy"><strong>${strategy}</strong> - ${pct}%</strong></div>`;
+    }
+    const groupPct = Math.round(groupTotal / groupMax * 100);
+    resultDiv.innerHTML += `<p><strong>${groupName} 총합:</strong> ${groupPct}%</p>`;
+  }
+
+  const upperLabels = ["인지적 방법", "체험적 방법", "행동적 방법"];
+  const upperData = [0,0,0];
+
+  for (let i = 0; i < upperLabels.length; i++) {
+    let label = upperLabels[i];
+    const subStrategies = Object.keys(groups[label]);
+    let sum = 0;
+    for (const s of subStrategies) {
+      let idx = chartLabels.indexOf(s);
+      if (idx !== -1) sum += chartData[idx];
+    }
+    upperData[i] = Math.round(sum / subStrategies.length);
+  }
+
+  new Chart(chartCtx, {
+    type: 'bar',
+    data: {
+      labels: [...chartLabels, ...upperLabels],
+      datasets: [
+        {
+          label: '하위 전략',
+          data: [...chartData, null, null, null],
+          backgroundColor: 'rgba(0,122,204,0.6)',
+        },
+        {
+          label: '상위 전략',
+          data: [...Array(chartData.length).fill(null), ...upperData],
+          backgroundColor: 'rgba(255,99,132,0.6)',
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
